@@ -25,6 +25,6 @@ catch(error)
     return{
         status: 'error',
         message: error.message
-    }
+    };
 }
-}
+};

@@ -22,6 +22,10 @@ function App() {
     }
 
     setTaskList([...taskList, obj]);
+
+    //call api to send data to the database
+    const response = postTask(obj);
+
   };
 
   const switchTask = (id, type) => {
