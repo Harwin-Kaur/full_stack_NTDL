@@ -1,0 +1,37 @@
+# Not to do list api
+
+@baseUrl = http://localhost:8000/api/v1/tasks
+
+### POST the task list 
+POST {{baseUrl}} 
+Content-Type: application/json
+
+
+{ 
+    "task": "coding",
+    "hr" : 10,
+    "type": "bad"
+   
+
+}
+
+### GET the task list  
+GET {{baseUrl}}
+
+### Update the task list
+PATCH  {{baseUrl}}
+Content-Type: application/json
+
+{
+    "_id": "66a9bf9a09d52386176b3a13",
+      "type": "bad"
+}
+
+### Delete the task list 
+DELETE  {{baseUrl}}
+Content-Type: application/json
+
+[
+    "66b8531bc60351964ff91c24",
+    "66b85418c60351964ff91c26"
+]

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
+import { postTask } from "./helpers/axiosHelper.js";
 
 const hrPerWek = 24 * 7;
 function App() {
@@ -10,7 +11,7 @@ function App() {
     return acc + item.hr;
   }, 0);
 
-  const addTaskList = (taskObj) => {
+  const addTaskList = async (taskObj) => {
     const obj = {
       ...taskObj,
       id: randomIdGenerator(),
@@ -24,8 +25,8 @@ function App() {
     setTaskList([...taskList, obj]);
 
     //call api to send data to the database
-    const response = postTask(obj);
-
+    const response = await postTask(obj);
+  
   };
 
   const switchTask = (id, type) => {
