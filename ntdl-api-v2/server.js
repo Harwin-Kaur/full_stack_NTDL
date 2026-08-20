@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 const PORT = 8000;
 import morgan from "morgan";
-//  import cors from "cors";
+ import cors from "cors";
  
 
 // Connect MongoDb
