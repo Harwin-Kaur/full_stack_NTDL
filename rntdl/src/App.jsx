@@ -12,21 +12,21 @@ function App() {
   }, 0);
 
   const addTaskList = async (taskObj) => {
-    const obj = {
-      ...taskObj,
-      id: randomIdGenerator(),
-      type: "entry",
-    };
+    // const obj = {
+    //   ...taskObj,
+    //   id: randomIdGenerator(),
+    //   type: "entry",
+    // };
 
-    if (ttlHr + taskObj.hr > hrPerWek) {
-      return alert("Sorry Boss not enought time fit this task from last week.");
-    }
+    // if (ttlHr + taskObj.hr > hrPerWek) {
+    //   return alert("Sorry Boss not enought time fit this task from last week.");
+    // }
 
-    setTaskList([...taskList, obj]);
+    // setTaskList([...taskList, obj]);
 
     //call api to send data to the database
-    const response = await postTask(obj);
-  
+    const response = await postTask(taskObj);
+  console.log(response);
   };
 
   const switchTask = (id, type) => {

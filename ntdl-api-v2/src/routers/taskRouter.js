@@ -20,8 +20,8 @@ import {
 router.post("/", async (req, res, next) => {
   try {
     //inser task
-    const result = await insertTask(req.body);
-    console.log(result);
+    // const result = await insertTask(req.body);
+    console.log(req.body);
     res.json({
       status: "success",
       message: "New task has been added successfully",
