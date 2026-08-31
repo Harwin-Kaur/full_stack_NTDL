@@ -7,9 +7,12 @@ import { postTask } from "./helpers/axiosHelper.js";
 const hrPerWek = 24 * 7;
 function App() {
   const [taskList, setTaskList] = useState([]);
+
+ const [resp, setResp] = useState({})
+
   const ttlHr = taskList.reduce((acc, item) => {
     return acc + item.hr;
-  }, 0);
+  }, 0);                          
 
   const addTaskList = async (taskObj) => {
     // const obj = {
@@ -27,6 +30,7 @@ function App() {
     //call api to send data to the database
     const response = await postTask(taskObj);
   console.log(response);
+  setResp(response);
   };
 
   const switchTask = (id, type) => {
@@ -66,6 +70,8 @@ function App() {
       {/* <!-- title  --> */}
       <div className="container">
         <h1 className="text-center">Not To Do List</h1>
+
+        <div className={resp?.status === "success" ?  "alert alert-success": "alert alert-danger"}>{resp?.message}</div>
 
         {/* <!-- form  --> */}
         <Form addTaskList={addTaskList} />
