@@ -30,3 +30,16 @@ catch(error)
     };
 }
 };
+
+export const fetchAllTasks = async () => {
+    try {
+        const response = await axios.get(apiEP);
+        return response.data;
+    }
+    catch (error) {
+        return {
+            status: 'error',
+            message: error.message,
+        };
+    }
+}

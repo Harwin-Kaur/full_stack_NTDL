@@ -14,6 +14,11 @@ function App() {
     return acc + item.hr;
   }, 0);                          
 
+
+  useEffect(() => {
+    getAllTasks()
+  },[])
+
   const addTaskList = async (taskObj) => {
     // const obj = {
     //   ...taskObj,
@@ -63,6 +68,14 @@ function App() {
     if (window.confirm("Are you sure, you want to delete this?")) {
       setTaskList(taskList.filter((item) => item.id !== id));
     }
+  };
+
+  const getAllTask = async () => {
+    // call the axios helper to get data from the server
+
+    const data = await fetchAllTasks();
+    // mount that data to our taskList state
+    setTaskList(data);
   };
 
   return (
