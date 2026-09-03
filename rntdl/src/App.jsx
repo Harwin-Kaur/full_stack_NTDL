@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
@@ -15,9 +15,9 @@ function App() {
   }, 0);                          
 
 
-  useEffect(() => {
-    getAllTasks()
-  },[])
+  // useEffect(() => {
+  //   getAllTask()
+  // },[])
 
   const addTaskList = async (taskObj) => {
     // const obj = {
