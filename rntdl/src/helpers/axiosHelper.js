@@ -34,6 +34,7 @@ catch(error)
 export const fetchAllTasks = async () => {
     try {
         const response = await axios.get(apiEP);
+        console.log("GET response:", response);
         return response.data;
     }
     catch (error) {

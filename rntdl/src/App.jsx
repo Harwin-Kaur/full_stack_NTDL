@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
-import { postTask } from "./helpers/axiosHelper.js";
+import { postTask, fetchAllTasks } from "./helpers/axiosHelper.js";
 
 const hrPerWek = 24 * 7;
 function App() {
@@ -15,9 +15,9 @@ function App() {
   }, 0);                          
 
 
-  // useEffect(() => {
-  //   getAllTask()
-  // },[])
+  useEffect(() => {
+    getAllTask();
+  },[]);
 
   const addTaskList = async (taskObj) => {
     // const obj = {
@@ -74,8 +74,9 @@ function App() {
     // call the axios helper to get data from the server
 
     const data = await fetchAllTasks();
+    
     // mount that data to our taskList state
-    setTaskList(data);
+    // setTaskList(data);
   };
 
   return (
