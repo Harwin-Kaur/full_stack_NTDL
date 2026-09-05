@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
@@ -9,6 +9,7 @@ function App() {
   const [taskList, setTaskList] = useState([]);
 
  const [resp, setResp] = useState({})
+ const shouldFetchRef = useRef(true);
 
   const ttlHr = taskList.reduce((acc, item) => {
     return acc + item.hr;
@@ -16,7 +17,8 @@ function App() {
 
 
   useEffect(() => {
-    getAllTask();
+    shouldFetchRef.current && getAllTask();
+    shouldFetchRef.current = false;
   },[]);
 
   const addTaskList = async (taskObj) => {
@@ -74,9 +76,9 @@ function App() {
     // call the axios helper to get data from the server
 
     const data = await fetchAllTasks();
-    
+    console.log(data);
     // mount that data to our taskList state
-    // setTaskList(data);
+    data?.status === "success" && setTaskList(data.tasks);
   };
 
   return (

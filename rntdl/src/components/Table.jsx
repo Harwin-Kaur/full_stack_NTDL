@@ -46,7 +46,7 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
         <table className="table table-striped table-hover border">
           <tbody id="badList">
             {badList.map((item, i) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>{i + 1}</td>
                 <td>{item.task}</td>
                 <td>{item.hr}hr</td>
