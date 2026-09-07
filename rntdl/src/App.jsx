@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
-import { postTask, fetchAllTasks } from "./helpers/axiosHelper.js";
+import { postTask, fetchAllTasks, updateTasks } from "./helpers/axiosHelper.js";
 
 const hrPerWek = 24 * 7;
 function App() {
@@ -40,16 +40,23 @@ function App() {
   setResp(response);
   };
 
-  const switchTask = (id, type) => {
-    setTaskList(
-      taskList.map((item) => {
-        if (item.id === id) {
-          item.type = type;
-        }
+  const switchTask = async (_id, type) => {
+    // setTaskList(
+    //   taskList.map((item) => {
+    //     if (item.id === id) {
+    //       item.type = type;
+    //     }
 
-        return item;
-      })
-    );
+    //     return item;
+    //   })
+    // );
+
+    const response = await updateTasks({_id, type});
+    setResp(response);
+    if(response.status ==="success"){
+      //fetchalltask from the server 
+      getAllTask();
+    }
   };
 
   const randomIdGenerator = (lenght = 6) => {
@@ -66,9 +73,11 @@ function App() {
     return id;
   };
 
-  const handleOnDelete = (id) => {
+  const handleOnDelete = () => {
     if (window.confirm("Are you sure, you want to delete this?")) {
-      setTaskList(taskList.filter((item) => item.id !== id));
+      // setTaskList(taskList.filter((item) => item._id !== id));
+
+      //to do delete
     }
   };
 
@@ -76,7 +85,7 @@ function App() {
     // call the axios helper to get data from the server
 
     const data = await fetchAllTasks();
-    console.log(data);
+    // console.log(data);
     // mount that data to our taskList state
     data?.status === "success" && setTaskList(data.tasks);
   };
@@ -88,7 +97,7 @@ function App() {
         <h1 className="text-center">Not To Do List</h1>
         
         
-        <div className={resp?.status === "success" ?  "alert alert-success": "alert alert-danger"}>{resp?.message}</div>
+        {resp?.message && (<div className={resp?.status === "success" ?  "alert alert-success": "alert alert-danger"}>{resp?.message}</div>)}
 
         {/* <!-- form  --> */}
         <Form addTaskList={addTaskList} />

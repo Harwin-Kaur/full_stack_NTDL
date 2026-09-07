@@ -21,7 +21,7 @@ router.post("/", async (req, res, next) => {
   try {
     //inser task
     const result = await insertTask(req.body);
-   console.log(result);
+    console.log(result);
    result?._id 
 
     ? res.json({
@@ -56,15 +56,32 @@ router.get("/", async (req, res, next) => {
 
 router.patch("/", async (req, res, next) => {
   // do your code
+
+try{
   const { _id, ...rest } = req.body;
-  console.log(req.body);
+   console.log(req.body);
+  
   const result = await updateTask(_id, rest);
 
-  res.json({
+  result?._id 
+  ? res.json({
     status: "success",
     message: "Your task has been updated",
+  })
+  :
+  res.json({
+    status: "error",
+    message: "Unable to update the task, try again later",
     result,
   });
+}
+catch (error) {
+  res.json({
+      status: "error",
+      message: error.message,
+    });
+}
+
 });
 
 router.delete("/:_id", async (req, res, next) => {

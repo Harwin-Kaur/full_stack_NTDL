@@ -1,19 +1,19 @@
 import axios from 'axios';
 const apiEP = 'http://localhost:8000/api/v1/tasks';
-// const apiProcessor = async () => {
-//     try{
-//         const response = await axios ({
-//             method,
-//             url
-//         })
-//     }
-//     catch(error){
-//         return {
-//             status: 'error',
-//             message: error.message
-//         }
-//     }
-// }
+const apiProcessor = async () => {
+    try{
+        const response = await axios ({
+            method,
+            url
+        })
+    }
+    catch(error){
+        return {
+            status: 'error',
+            message: error.message
+        }
+    }
+}
 
 export const postTask = async(data) => {
     try{
@@ -37,6 +37,21 @@ export const fetchAllTasks = async () => {
         console.log("GET response:", response);
         return response.data;
     }
+    catch (error) {
+        return {
+            status: 'error',
+            message: error.message,
+        };
+    }
+}
+
+export const updateTasks = async (data) => {
+    try {
+        const response = await axios.patch(apiEP,data);
+        
+        return response.data;
+    }
+    
     catch (error) {
         return {
             status: 'error',
