@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const Table = ({ taskList, switchTask, handleOnDelete }) => {
 
+
    const [toDelete, setToDelete] = useState([]);
   const entryList = taskList.filter((item) => item.type === "entry") || [];
   const badList = taskList.filter((item) => item.type === "bad") || [];
@@ -24,10 +25,17 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
         // get all ids from entry list
 
         const _ids = tempArg.map(item => item._id);
-        setToDelete([
-          ...toDelete,
-          ..._ids
-        ]);
+        const uniqueIds = [...new Set([ ...toDelete,
+          ..._ids])];
+
+        setToDelete(uniqueIds);
+
+
+        // setToDelete([
+        //   ...toDelete,
+        //   ..._ids
+        // ]);
+       
         return;
       }
 
@@ -37,7 +45,7 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
     } else{
 
       if(value === "allEntry" || value === "allBad"){
-        const _ids = entryList.map(item => item._id);
+        const _ids = tempArg.map(item => item._id);
         
         setToDelete(toDelete.filter(_id => !_ids.includes(_id)));
         return;
@@ -50,6 +58,7 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
      console.log(toDelete);
 
   return (
+    <>
     <div className="row mt-5">
       <div className="col-md">
         <h3 className="text-center">Entry List</h3>
@@ -132,5 +141,12 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
         </div>
       </div>
     </div>
+    {toDelete.length > 0 && (
+    <div className="row my-5 d-grid">
+      <button className="btn btn-danger">Delete{toDelete.length} task(s)</button>
+    </div>
+    
+  )};
+  </>
   );
 };
