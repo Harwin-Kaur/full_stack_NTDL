@@ -1,12 +1,15 @@
 import axios from 'axios';
 const apiEP = 'http://localhost:8000/api/v1/tasks';
-const apiProcessor = async () => {
+const apiProcessor = async ({method, data}) => {
     try{
         const response = await axios ({
-            method,
-            url
-        })
+            method, 
+            url: apiEP,
+            data
+        });
+        return response.data;
     }
+    
     catch(error){
         return {
             status: 'error',
@@ -16,46 +19,38 @@ const apiProcessor = async () => {
 }
 
 export const postTask = async(data) => {
-    try{
-        const response = await axios.post(apiEP, data);
-        console.log(response);
-        return response.data;
-        
+    const obj = {
+        method: 'post',      // code refactoring
+        data,
     }
-catch(error)
-{
-    return{
-        status: 'error',
-        message: error.message
-    };
-}
+    return apiProcessor(obj);
+//     try{
+//         const response = await axios.post(apiEP, data);
+//         console.log(response);
+//         return response.data;
+
+//     }
+// catch(error)
+// {
+//     return{
+//         status: 'error',
+//         message: error.message
+//     };
+// }
 };
 
-export const fetchAllTasks = async () => {
-    try {
-        const response = await axios.get(apiEP);
-        console.log("GET response:", response);
-        return response.data;
+export const fetchAllTasks = async (data) => {
+     const obj = {
+        method: 'get',      // code refactoring
+        data,
     }
-    catch (error) {
-        return {
-            status: 'error',
-            message: error.message,
-        };
-    }
+    return apiProcessor(obj);
 }
 
 export const updateTasks = async (data) => {
-    try {
-        const response = await axios.patch(apiEP,data);
-        
-        return response.data;
+    const obj = {
+        method: 'patch',      // code refactoring
+        data,
     }
-    
-    catch (error) {
-        return {
-            status: 'error',
-            message: error.message,
-        };
-    }
+    return apiProcessor(obj);
 }
