@@ -74,11 +74,13 @@ function App() {
     return id;
   };
 
-  const handleOnDelete = () => {
+  const handleOnDelete = (idsToDelete) => {
     if (window.confirm("Are you sure, you want to delete this?")) {
       // setTaskList(taskList.filter((item) => item._id !== id));
 
       //to do delete
+      
+      console.log(idsToDelete);
     }
   };
 
