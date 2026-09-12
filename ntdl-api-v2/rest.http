@@ -22,10 +22,15 @@ GET {{baseUrl}}
 PATCH  {{baseUrl}}
 Content-Type: application/json
 
-{
-    "_id": "66a9bf9a09d52386176b3a13",
-      "type": "bad"
-}
+# {
+#     "_id": "66a9bf9a09d52386176b3a13",
+#       "type": "bad"
+# }
 
-### Delete the task list
-DELETE  {{baseUrl}}/66a9c05a93936a640146982c
+## Delete the task list
+DELETE  {{baseUrl}}
+# DELETE  {{baseUrl}}/66a9c05a93936a640146982c
+Content-Type: application/json
+
+["66a9c05a93936a640146982c",
+"66a9c05a93936a640146932sd"]

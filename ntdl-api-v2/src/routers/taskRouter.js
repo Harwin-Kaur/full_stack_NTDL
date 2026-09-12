@@ -84,10 +84,14 @@ catch (error) {
 
 });
 
-router.delete("/:_id", async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
+  
   // do your code
 
-  const { _id } = req.params;
+  return console.log(req.body);
+
+  // const { _id } = req.params;
+  const  _ids  = req.body;
 
   const result = await deleteTask(_id);
   res.json({
