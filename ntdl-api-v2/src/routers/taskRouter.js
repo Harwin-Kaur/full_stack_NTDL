@@ -88,12 +88,10 @@ router.delete("/", async (req, res, next) => {
   
   // do your code
 
-  return console.log(req.body);
+    console.log(req.body);
 
-  // const { _id } = req.params;
-  const  _ids  = req.body;
 
-  const result = await deleteTask(_id);
+  const result = await deleteTask(req.body);
   res.json({
     status: "success",
     message: "Your task has been deleted",

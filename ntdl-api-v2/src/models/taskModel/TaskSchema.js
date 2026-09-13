@@ -35,6 +35,11 @@ export const updateTask = (_id, rest) => {
     new: true,
   });
 };
-export const deleteTask = (_id) => {
-  return TaskCollection.findByIdAndDelete(_id);
+// export const deleteTask = (_id) => {
+//   return TaskCollection.findByIdAndDelete(_id);
+// };
+
+
+export const deleteTask = (ids) => {
+  return TaskCollection.deleteMany({_id: {$in: ids}});
 };

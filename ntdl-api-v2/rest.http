@@ -27,9 +27,9 @@ Content-Type: application/json
 #       "type": "bad"
 # }
 
-## Delete the task list
+### Delete the task list
+
 DELETE  {{baseUrl}}
-# DELETE  {{baseUrl}}/66a9c05a93936a640146982c
 Content-Type: application/json
 
 ["66a9c05a93936a640146982c",
