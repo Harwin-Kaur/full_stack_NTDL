@@ -74,12 +74,13 @@ function App() {
     return id;
   };
 
-  const handleOnDelete = (idsToDelete) => {
+  const handleOnDelete = async (idsToDelete) => {
     if (window.confirm("Are you sure, you want to delete this?")) {
       // setTaskList(taskList.filter((item) => item._id !== id));
 
       //to do delete
-      
+      const  response = await deleteTask(idsToDelete);
+      setResp(response);
       console.log(idsToDelete);
     }
   };

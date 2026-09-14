@@ -85,18 +85,33 @@ catch (error) {
 });
 
 router.delete("/", async (req, res, next) => {
-  
-  // do your code
 
-    console.log(req.body);
+  try{
 
-
+    // do your code
   const result = await deleteTask(req.body);
+ console.log(result);
+
+  result?.deletedCount ?
   res.json({
     status: "success",
     message: "Your task has been deleted",
     result,
+  }):
+  res.json({
+    status: "error",
+    message: "Unable to delete the task, try again later",
+    result,
   });
+  }
+  catch(error){
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+  
+  
 });
 
 export default router;

@@ -54,3 +54,11 @@ export const updateTasks = async (data) => {
     }
     return apiProcessor(obj);
 }
+
+export const deleteTask = async (data) => {
+    const obj = {
+        method: 'delete',      // code refactoring
+        data,
+    }
+    return apiProcessor(obj);
+}
