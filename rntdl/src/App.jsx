@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Form } from "./components/Form";
 import { Table } from "./components/Table";
-import { postTask, fetchAllTasks, updateTasks } from "./helpers/axiosHelper.js";
+import { postTask, fetchAllTasks, updateTasks, deleteTask } from "./helpers/axiosHelper.js";
 
 const hrPerWek = 24 * 7;
 function App() {
@@ -54,10 +54,7 @@ function App() {
 
     const response = await updateTasks({_id, type});
     setResp(response);
-    if(response.status ==="success"){
-      //fetchalltask from the server 
-      getAllTask();
-    }
+   
   };
 
   const randomIdGenerator = (lenght = 6) => {
@@ -81,7 +78,17 @@ function App() {
       //to do delete
       const  response = await deleteTask(idsToDelete);
       setResp(response);
-      console.log(idsToDelete);
+
+       if(response.status ==="success"){
+      //fetchalltask from the server 
+      getAllTask();
+
+      //when operation is successful, empty the delete array
+
+      idsToDelete([]);
+
+    }
+      
     }
   };
 

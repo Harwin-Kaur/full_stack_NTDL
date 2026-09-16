@@ -7,7 +7,7 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
   const entryList = taskList.filter((item) => item.type === "entry") || [];
   const badList = taskList.filter((item) => item.type === "bad") || [];
 
-  const handleOnSelect = (e) => {
+  const handleOnSelect = () => {
    
     const {checked, value} = e.target;
 
@@ -144,7 +144,7 @@ export const Table = ({ taskList, switchTask, handleOnDelete }) => {
     {toDelete.length > 0 && (
     <div className="row my-5 d-grid">
       <button 
-      onclick={() => handleOnDelete(toDelete)}
+      onClick={() => handleOnDelete(toDelete)}
       className="btn btn-danger">Delete{toDelete.length} task(s)</button>
     </div>
     
