@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-export const Table = ({ taskList, switchTask, handleOnDelete }) => {
+export const Table = ({ taskList, switchTask,  }) => {
 
 
    const [toDelete, setToDelete] = useState([]);
   const entryList = taskList.filter((item) => item.type === "entry") || [];
   const badList = taskList.filter((item) => item.type === "bad") || [];
 
-  const handleOnSelect = () => {
+  const handleOnSelect = (e) => {
    
     const {checked, value} = e.target;
 
