@@ -101,6 +101,56 @@ function App() {
     data?.status === "success" && setTaskList(data.tasks);
   };
 
+   const handleOnSelect = (e) => {
+   
+    const {checked, value} = e.target;
+
+    let tempArg = [];
+    if(value === "allEntry"){
+      tempArg = entryList;
+    }
+    if(value === "allBad"){
+      tempArg = badList;
+    }
+
+    if(checked){
+
+      if(value === "allEntry" || value === "allBad"){
+        // get all ids from entry list
+
+        const _ids = tempArg.map(item => item._id);
+        const uniqueIds = [...new Set([ ...toDelete,
+          ..._ids])];
+
+        setToDelete(uniqueIds);
+
+
+        // setToDelete([
+        //   ...toDelete,
+        //   ..._ids
+        // ]);
+       
+        return;
+      }
+
+      setToDelete([
+        ...toDelete, value
+      ]);
+    } else{
+
+      if(value === "allEntry" || value === "allBad"){
+        const _ids = tempArg.map(item => item._id);
+        
+        setToDelete(toDelete.filter(_id => !_ids.includes(_id)));
+        return;
+      }
+      setToDelete(toDelete.filter((_id) => _id !== value));
+    }
+     console.log(checked, value);
+  };
+
+     console.log(toDelete);
+
   return (
     <div className="wrapper pt-5">
       {/* <!-- title  --> */}
