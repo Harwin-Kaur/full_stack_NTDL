@@ -4,7 +4,7 @@ import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 import { postTask, fetchAllTasks, updateTasks, deleteTask } from "./helpers/axiosHelper.js";
 
-const hrPerWek = 24 * 7;
+// const hrPerWek = 24 * 7;
 function App() {
   const [taskList, setTaskList] = useState([]);
 
@@ -14,6 +14,10 @@ function App() {
   const ttlHr = taskList.reduce((acc, item) => {
     return acc + item.hr;
   }, 0);                          
+
+  const [toDelete, setToDelete] = useState([]);
+  const entryList = taskList.filter((item) => item.type === "entry") || [];
+  const badList = taskList.filter((item) => item.type === "bad") || [];
 
 
   useEffect(() => {
@@ -104,7 +108,7 @@ function App() {
    const handleOnSelect = (e) => {
    
     const {checked, value} = e.target;
-
+    
     let tempArg = [];
     if(value === "allEntry"){
       tempArg = entryList;
@@ -168,6 +172,10 @@ function App() {
           taskList={taskList}
           switchTask={switchTask}
           handleOnDelete={handleOnDelete}
+
+          toDelete = {toDelete}
+          handleOnSelect = {handleOnSelect}
+          entryList = {entryList}
         />
 
         <div className="alert alert-success">
