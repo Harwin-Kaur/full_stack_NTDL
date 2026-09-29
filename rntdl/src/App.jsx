@@ -4,7 +4,7 @@ import { Form } from "./components/Form";
 import { Table } from "./components/Table";
 import { postTask, fetchAllTasks, updateTasks, deleteTask } from "./helpers/axiosHelper.js";
 
-// const hrPerWek = 24 * 7;
+const hrPerWek = 24 * 7;
 function App() {
   const [taskList, setTaskList] = useState([]);
 
