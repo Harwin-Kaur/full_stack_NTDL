@@ -89,7 +89,7 @@ function App() {
 
       //when operation is successful, empty the delete array
 
-      idsToDelete([]);
+       setToDelete([]);
 
     }
       
@@ -103,6 +103,7 @@ function App() {
     // console.log(data);
     // mount that data to our taskList state
     data?.status === "success" && setTaskList(data.tasks);
+    
   };
 
    const handleOnSelect = (e) => {
@@ -176,6 +177,7 @@ function App() {
           toDelete = {toDelete}
           handleOnSelect = {handleOnSelect}
           entryList = {entryList}
+          badList={badList}
         />
 
         <div className="alert alert-success">

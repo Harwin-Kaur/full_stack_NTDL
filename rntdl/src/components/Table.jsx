@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-export const Table = ({ taskList, switchTask, handleOnDelete }) => {
+export const Table = ({ taskList,
+  switchTask,
+  handleOnDelete,
+  toDelete,
+  handleOnSelect,
+  entryList,
+  badList }) => {
 
 
   //  const [toDelete, setToDelete] = useState([]);

@@ -7,7 +7,7 @@ import morgan from "morgan";
 
 // Connect MongoDb
 import { connectMongoDb } from "./src/config/dbConfig.js";
-// connectMongoDb();
+connectMongoDb();
 
 app.use(morgan("dev"));
 app.use(express.json());
