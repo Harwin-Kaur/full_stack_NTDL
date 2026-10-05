@@ -43,7 +43,7 @@ export const Form = ({ addTaskList }) => {
             aria-label="Last name"
             name="hr"
             min="1"
-            max="70"
+            max="100"
             onChange={handleOnChange}
             required
           />

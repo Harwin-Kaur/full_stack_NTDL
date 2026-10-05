@@ -32,9 +32,9 @@ function App() {
     //   type: "entry",
     // };
 
-    // if (ttlHr + taskObj.hr > hrPerWek) {
-    //   return alert("Sorry Boss not enought time fit this task from last week.");
-    // }
+    if (ttlHr + taskObj.hr > hrPerWek) {
+      return alert("Sorry Boss not enought time fit this task from last week.");
+    }
 
     // setTaskList([...taskList, obj]);
 
@@ -42,7 +42,7 @@ function App() {
     const response = await postTask(taskObj);
   console.log(response);
   setResp(response);
-  
+  getAllTask();
   };
 
   const switchTask = async (_id, type) => {
