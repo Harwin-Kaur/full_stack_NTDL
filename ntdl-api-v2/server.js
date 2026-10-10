@@ -13,6 +13,11 @@ app.use(morgan("dev"));
 app.use(express.json());
  app.use(cors());
 
+
+//static serving
+import path from "path";
+const __dirname = path.resolve();
+
 import taskRouter from "./src/routers/taskRouter.js";
 app.use("/api/v1/tasks", taskRouter);
 
